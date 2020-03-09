@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+    master:
+        build: ./jenkins-master
+        ports:
+            - "50000:50000"
+        volumes:
+            - jenkins-defaults-log:/var/log/jenkins
+            - jenkins-defaults-data:/var/jenkins_home
+        networks:
+            - jenkins-default-net
+    nginx:
+        build: ./jenkins-nginx
+        ports:
+            - "80:80"
+        networks:
+            - jenkins-default-net
+    slave:
+        build: ./jenkins-slave
+    proxy:
+        build: ./docker-proxy
+        #command: -i
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+        networks:
+            jenkins-default-net:
+                aliases:
+                    - proxy1 
+
+volumes:
+    jenkins-defaults-data:
+    jenkins-defaults-log:
+networks:
+    jenkins-default-net:
