@@ -8,4 +8,4 @@ To run the container type: $ make run
 
 This will create a 4 docker containers under the service name jenkins that is defined in the .env file.
 
-![High Level Diagram](./static/HigLevelDiagram.jpg)
+![High Level Diagram](https://github.com/rhimmelbauer/jenkins-master-defaults/blob/master/static/HighLevelDiagram.jpg)
