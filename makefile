@@ -1,12 +1,12 @@
 build:
-	@docker-compose -p jenkins build
+	@docker-compose build
 run:
-	@docker-compose -p jenkins up -d nginx master proxy
+	@docker-compose up -d nginx master proxy
 stop:
-	@docker-compose -p jenkins down
+	@docker-compose down
 clean-data: 
-	@docker-compose -p jenkins down -v
+	@docker-compose down -v
 clean-images:
 	@docker rmi `docker images -q -f "dangling=true"`
 jenkins-log:
-	@docker-compose -p jenkins exec master tail -f /var/log/jenkins/jenkins.log
+	@docker-compose exec master tail -f /var/log/jenkins/jenkins.log
